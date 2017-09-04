@@ -40,10 +40,10 @@ img {
   border: none;
 }
 
-input {
+input[type='button']{
   -webkit-appearance:none;
 }
-input, textarea, a {
+input[type='text'], textarea, a {
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance:none;
 }
