@@ -12,23 +12,23 @@
     <ul class="m-menu">
       <router-link to="/alreadyBought" tag="li">
         <span>已购课程</span>
-        <img src="../../images/right2.png" alt="">
+        <i class="iconfont">&#xe612;</i>
       </router-link>
       <router-link to="/release" tag="li">
         <span>发布课程</span>
-        <img src="../../images/right2.png" alt="">
+        <i class="iconfont">&#xe612;</i>
       </router-link>
       <router-link to="/myIncome" tag="li">
         <span>我的收益</span>
-        <img src="../../images/right2.png" alt="">
+        <i class="iconfont">&#xe612;</i>
       </router-link>
       <router-link to="/about" tag="li">
         <span>关于我们</span>
-        <img src="../../images/right2.png" alt="">
+        <i class="iconfont">&#xe612;</i>
       </router-link>
       <router-link to="/commonProblems" tag="li">
         <span>常见问题</span>
-        <img src="../../images/right2.png" alt="">
+        <i class="iconfont">&#xe612;</i>
       </router-link>
     </ul>
   </div>

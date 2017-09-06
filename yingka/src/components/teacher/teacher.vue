@@ -1,37 +1,13 @@
 <template>
   <div class="teacher">
     <ul>
-      <router-link to="/teacherDetail" tag="li">
-        <img src="../../images/tx.png" alt="">
+      <router-link :to="{path:'/teacherDetail', query:{id:teacherListItem.id}}" tag="li" v-for="(teacherListItem, index) in teacherList" :key="index">
+        <img :src="teacherListItem.uavatar" alt="">
         <div class="t-info">
-          <div class="t-name">Jenny</div>
-          <div class="t-title">哈尔滨工业大学本科，爱尔兰国立大学...asdsadsadsadasdsad</div>
+          <div class="t-name" v-text="teacherListItem.unick"></div>
+          <div class="t-title" v-text="teacherListItem.motto"></div>
         </div>
-        <img class="right" src="../../images/right.png" alt="">
-      </router-link>
-      <router-link to="/teacherDetail" tag="li">
-        <img src="../../images/tx.png" alt="">
-        <div class="t-info">
-          <div class="t-name">Nina</div>
-          <div class="t-title">哈尔滨工业大学本科，爱尔兰国立大学...asdsadsadsadasdsad</div>
-        </div>
-        <img class="right" src="../../images/right.png" alt="">
-      </router-link>
-      <router-link to="/teacherDetail" tag="li">
-        <img src="../../images/tx.png" alt="">
-        <div class="t-info">
-          <div class="t-name">Linda</div>
-          <div class="t-title">哈尔滨工业大学本科，爱尔兰国立大学...asdsadsadsadasdsad</div>
-        </div>
-        <img class="right" src="../../images/right.png" alt="">
-      </router-link>
-      <router-link to="/teacherDetail" tag="li">
-        <img src="../../images/tx.png" alt="">
-        <div class="t-info">
-          <div class="t-name">Philip</div>
-          <div class="t-title">哈尔滨工业大学本科，爱尔兰国立大学...asdsadsadsadasdsad</div>
-        </div>
-        <img class="right" src="../../images/right.png" alt="">
+        <i class="iconfont">&#xe679;</i>
       </router-link>
     </ul>
   </div>
@@ -40,7 +16,22 @@
 <script type="text/ecmascript-6">
   export default {
     data() {
-      return {};
+      return {
+        teacherList: []
+      };
+    },
+    computed: {},
+    created() {
+        this.$http.get('/api/web/teacher?p=1').then((res) => {
+            res = res.data;
+            if (res.state === 0) {
+              this.teacherList = res.list;
+            }
+        });
+    },
+    mounted() {},
+    activated() {},
+    methods: {
     }
   };
 </script>
@@ -57,6 +48,9 @@
       display flex
       align-items center
       justify-content space-around
+      .iconfont
+        color #cc1438
+        padding-right 5px
       img
         height 40px
         width 40px

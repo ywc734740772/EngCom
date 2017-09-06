@@ -4,31 +4,31 @@
       <div class="homeNav">
         <div class="h-menu">
           <router-link to="/course/livesCourse">
-            <img src="./images/course_red.png">
+            <i class="iconfont">&#xe605;</i>
             <span class="tabbar-label">课程</span>
           </router-link>
           <router-link to="/teacher">
-            <img src="./images/teacher.png">
+            <i class="iconfont">&#xe607;</i>
             <span class="tabbar-label">秀外教</span>
           </router-link>
           <router-link to="/release">
-            <img src="./images/release.png">
+            <i class="iconfont" style="font-size: 28px;margin-top: -5px">&#xe603;</i>
             <span class="tabbar-label">发布</span>
           </router-link>
           <router-link to="/activity">
-            <img src="./images/activity.png">
+            <i class="iconfont">&#xe606;</i>
             <span class="tabbar-label">活动</span>
           </router-link>
           <router-link to="/my">
-            <img src="./images/my.png">
+            <i class="iconfont">&#xe604;</i>
             <span class="tabbar-label">我的</span>
           </router-link>
         </div>
       </div>
     </div>
-    <keep-alive>
+    <!--<keep-alive>-->
       <router-view></router-view>
-    </keep-alive>
+    <!--</keep-alive>-->
   </div>
 </template>
 
@@ -75,6 +75,8 @@
           padding 8px 0
           align-items center
           color #333
+          .iconfont
+            font-size 20px
           img
             height 20px
             width auto

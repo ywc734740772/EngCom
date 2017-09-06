@@ -4,15 +4,6 @@
       <router-link to="/courseDetail" tag="li">
         <img src="../../images/slide02.png">
       </router-link>
-      <router-link to="/courseDetail" tag="li">
-        <img src="../../images/slide01.png">
-      </router-link>
-      <router-link to="/courseDetail" tag="li">
-        <img src="../../images/slide02.png">
-      </router-link>
-      <router-link to="/courseDetail" tag="li">
-        <img src="../../images/slide01.png">
-      </router-link>
     </ul>
   </div>
 </template>

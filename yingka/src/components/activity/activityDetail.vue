@@ -53,7 +53,7 @@
         </ul>
         <div class="ac-text">
           <span>已有80人报名</span>
-          <img class="ac-right" src="../../images/right.png" alt="">
+          <i class="iconfont ac-right">&#xe612;</i>
         </div>
       </div>
     </div>
@@ -91,7 +91,7 @@
           color #333
     .ac-registration
       background #ebebeb
-      padding 10px 15px
+      padding 10px 5px 10px 15px
       .ac-uesr
         display flex
         justify-content space-between
@@ -114,10 +114,9 @@
           span
             vertical-align: middle;
             display inline-block
-            margin-right 5px
           .ac-right
-            height 15px
-            width 9.2px
+            color #cc1438
+            font-weight 600
             vertical-align: middle;
     .ac-submit
       padding 15px 15px

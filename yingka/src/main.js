@@ -11,7 +11,6 @@ import course from './components/course/course.vue';
 import livesCourse from './components/course/livesCourse.vue';
 import pastCourse from './components/course/pastCourse.vue';
 import courseDetail from './components/course/courseDetail.vue';
-import courseDetail2 from './components/course/courseDetail2.vue';
 
 import teacher from './components/teacher/teacher.vue';
 import teacherDetail from './components/teacher/teacherDetail.vue';
@@ -54,9 +53,6 @@ const routes = [
   }, {
     path: '/courseDetail',
     component: courseDetail
-  }, {
-    path: '/courseDetail2',
-    component: courseDetail2
   }, {
     path: '/teacher',
     component: teacher

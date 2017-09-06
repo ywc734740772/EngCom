@@ -2,10 +2,10 @@
   <div class="teacherDetail">
     <div class="detailBox">
       <div class="detail">
-        <img src="../../images/tx2.png" alt="">
+        <img :src="teacherDetail.uavatar" alt="">
         <div class="t-info">
-          <div class="t-name">Jenny</div>
-          <div class="t-title">语言学博士</div>
+          <div class="t-name" v-text="teacherDetail.unick"></div>
+          <div class="t-title" v-text="teacherDetail.motto"></div>
         </div>
       </div>
 
@@ -17,23 +17,28 @@
 
     <div class="detailBox">
       <div class="t-content">
-        <div class="t-title">他的课程</div>
+        <div class="t-title">
+          <span>他的课程</span>
+          <a href="javascript:" v-if="teacherCourse.length">更多</a>
+        </div>
         <ul class="t-course">
-          <li>
-            <img src="../../images/slide01.png" alt="">
-            <span>基础商务英语系列课程</span>
-          </li>
-          <li>
-            <img src="../../images/slide02.png" alt="">
-            <span>基础商务英语系列课程</span>
-          </li>
+            <li v-for="(teacherCourseItem, index) in teacherCourse" :key="index" v-if="teacherCourse.length">
+              <a :href="teacherCourseItem.url">
+                <img :src="!!teacherCourseItem.cover ? 'http://wx.engcom-n.com' + teacherCourseItem.cover : CourseImg" alt="">
+                <span v-text="teacherCourseItem.title"></span>
+              </a>
+            </li>
+          <li v-if="!teacherCourse.length" style="width: 100%;text-align: center; font-size: 13px">当前老师还未开课！</li>
         </ul>
       </div>
     </div>
 
     <div class="detailBox">
       <div class="t-content">
-        <div class="t-title">个人秀</div>
+        <div class="t-title">
+          <span>个人秀</span>
+          <a href="javascript:">更多</a>
+        </div>
         <ul class="t-course">
           <li>
             <img src="../../images/slide01.png" alt="">
@@ -64,7 +69,20 @@
 <script type="text/ecmascript-6">
   export default {
     data() {
-      return {};
+      return {
+        teacherDetail: {},
+        teacherCourse: [],
+        CourseImg: '/static/img/slide01.af35782.png'
+      };
+    },
+    created() {
+      this.$http.get('/api/web/teacher/detail?id=' + this.$route.query.id).then((res) => {
+        res = res.data;
+        if (res.state === 0) {
+          this.teacherDetail = res.data;
+          this.teacherCourse = res.list;
+        }
+      });
     }
   };
 </script>
@@ -105,7 +123,11 @@
         .t-title
           font-size 14px
           color #cc1138
+          display flex
+          justify-content space-between
           padding-bottom 5px
+          a
+            color #333
         .t-Introduction
           font-size 12px;
           line-height 1.5
@@ -116,6 +138,8 @@
           justify-content space-between
           li
             width 48%;
+            a
+              height 100%
             img
               height 100px
             span

@@ -47,7 +47,7 @@
       <li>
         <div class="t-name">老师简介</div>
         <div class="t-info">
-          <img src="../../images/tx.png" alt="">
+          <div><img src="../../images/tx.png" alt=""></div>
           <div class="t-title">哈尔滨工业大学本科，爱尔兰国立大学..哈尔滨工业大学本科，爱尔兰国立大学...</div>
         </div>
       </li>
@@ -55,7 +55,7 @@
       <li>
         <div class="t-name">助教简介</div>
         <div class="t-info">
-          <img src="../../images/tx.png" alt="">
+          <div><img src="../../images/tx.png" alt=""></div>
           <div class="t-title">哈尔滨工业大学本科，爱尔兰国立大学..哈尔滨工业大学本科，爱尔兰国立大学...</div>
         </div>
       </li>
@@ -96,7 +96,7 @@
         </ul>
         <div class="ac-text">
           <span>已有80人预订</span>
-          <img class="ac-right" src="../../images/right.png" alt="">
+          <i class="iconfont ac-right">&#xe612;</i>
         </div>
       </div>
     </div>
@@ -143,8 +143,8 @@
       padding 15px 15px
       margin 15px 0
       img
-        height 60px
-        width 60px
+        height 50px
+        width 50px
         flex-grow: 1;
       .t-info
         display flex
@@ -153,7 +153,8 @@
         .t-title
           color #858585
           font-size 12px
-          padding 3px 0 3px 15px
+          display inline-block
+          padding 3px 0 3px 10px
           line-height 1.5
       .t-name
         color #cc1138
@@ -177,7 +178,7 @@
           color #333
     .ac-registration
       background #ebebeb
-      padding 10px 15px
+      padding 10px 5px 10px 15px
       margin 5px 0
       .ac-title
         font-size 14px
@@ -205,10 +206,9 @@
           span
             vertical-align: middle;
             display inline-block
-            margin-right 5px
           .ac-right
-            height 15px
-            width 9.2px
+            color #cc1438
+            font-weight 600
             vertical-align: middle;
     .buySub
       width 100%
@@ -227,7 +227,7 @@
         border solid 1px #cc1438
         color #cc1438
         border-radius: 5px;
-        font-size: 18px;
+        font-size: 16px;
         padding: 10px;
       .buyActive
         background: #cc1438;
