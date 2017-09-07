@@ -1,26 +1,11 @@
 <template>
   <div class="livesList">
     <ul>
-      <li>
-        <router-link to="/courseDetail">
-          <img src="../../images/slide01.png">
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/courseDetail">
-          <img src="../../images/slide02.png">
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/courseDetail">
-          <img src="../../images/slide01.png">
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/courseDetail">
-          <img src="../../images/slide02.png">
-        </router-link>
-      </li>
+      <router-link :to="{path:'/courseDetail', query:{id:courseItem.id}}" tag="li" v-for="(courseItem, index) in courseList" :key="index">
+        <li>
+            <img :src="courseItem.cover">
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -28,7 +13,18 @@
 <script type="text/ecmascript-6">
   export default {
     data() {
-      return {};
+      return {
+        courseList: []
+      };
+    },
+    computed: {},
+    created() {
+      this.$http.get('/api/web/goods/pass?p=1').then((res) => {
+        res = res.data;
+        if (res.state === 0) {
+          this.courseList = res.list;
+        }
+      });
     }
   };
 </script>
