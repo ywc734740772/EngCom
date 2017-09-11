@@ -11,6 +11,8 @@ import course from './components/course/course.vue';
 import livesCourse from './components/course/livesCourse.vue';
 import pastCourse from './components/course/pastCourse.vue';
 import courseDetail from './components/course/courseDetail.vue';
+import moreCourses from './components/course/moreCourses.vue';
+import courseContentDetails from './components/course/courseContentDetails.vue';
 
 import teacher from './components/teacher/teacher.vue';
 import teacherDetail from './components/teacher/teacherDetail.vue';
@@ -22,6 +24,7 @@ import releaseSuccess from './components/release/releaseSuccess.vue';
 
 import activity from './components/activity/activity.vue';
 import activityDetail from './components/activity/activityDetail.vue';
+import enrollmentNumbe from './components/activity/enrollmentNumbe.vue';
 
 import my from './components/my/my.vue';
 import myIncome from './components/my/myIncome.vue';
@@ -56,6 +59,12 @@ const routes = [
     path: '/courseDetail',
     component: courseDetail
   }, {
+    path: '/moreCourses',
+    component: moreCourses
+  }, {
+    path: '/courseContentDetails',
+    component: courseContentDetails
+  }, {
     path: '/teacher',
     component: teacher
   }, {
@@ -79,6 +88,9 @@ const routes = [
   }, {
     path: '/activityDetail',
     component: activityDetail
+  }, {
+    path: '/enrollmentNumbe',
+    component: enrollmentNumbe
   }, {
     path: '/my',
     component: my

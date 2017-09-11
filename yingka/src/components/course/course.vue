@@ -31,9 +31,16 @@
 
   export default {
     data() {
-      return {
-        courseList: []
-      };
+      return {};
+    },
+    created() {
+      this.$http.get('/api/web/goods?p=1').then((res) => {
+        res = res.data;
+        if (res.state === 0) {
+//          this.teacherList = res.list;
+          console.log(res);
+        }
+      });
     },
     mounted () {
       new Swiper('.swiper-container-s', {

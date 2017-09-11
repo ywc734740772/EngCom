@@ -19,7 +19,7 @@
       <div class="t-content">
         <div class="t-title">
           <span>他的课程</span>
-          <a href="javascript:" v-if="teacherCourse.length">更多</a>
+          <router-link  :to="{path:'/moreCourses'}" v-if="teacherCourse.length">更多</router-link>
         </div>
         <ul class="t-course">
             <li v-for="(teacherCourseItem, index) in teacherCourse" :key="index" v-if="teacherCourse.length">
