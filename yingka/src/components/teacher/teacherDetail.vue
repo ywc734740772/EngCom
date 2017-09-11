@@ -24,7 +24,7 @@
         <ul class="t-course">
             <li v-for="(teacherCourseItem, index) in teacherCourse" :key="index" v-if="teacherCourse.length">
               <a :href="teacherCourseItem.url">
-                <img :src="!!teacherCourseItem.cover ? 'http://wx.engcom-n.com' + teacherCourseItem.cover : CourseImg" alt="">
+                <img v-lazy="CourseImg" alt="">
                 <span v-text="teacherCourseItem.title"></span>
               </a>
             </li>
@@ -72,7 +72,7 @@
       return {
         teacherDetail: {},
         teacherCourse: [],
-        CourseImg: '/static/img/slide01.af35782.png'
+        CourseImg: 'https://cdn.pixabay.com/photo/2015/03/18/09/31/prairie-679014__340.jpg'
       };
     },
     created() {
@@ -138,8 +138,14 @@
           justify-content space-between
           li
             width 48%;
+            text-align center
             a
               height 100%
+              width 100%
+              display flex
+              flex-direction column
+              justify-content space-between
+              align-items center
             img
               height 100px
             span

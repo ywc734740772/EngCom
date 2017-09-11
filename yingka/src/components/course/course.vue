@@ -4,12 +4,12 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <a href="javascript:">
-            <img src="../../images/slide01.png">
+            <img src="../../images/slide01.png" class="lazyload-image">
           </a>
         </div>
         <div class="swiper-slide">
           <a href="javascript:">
-            <img src="../../images/slide02.png">
+            <img src="../../images/slide02.png" class="lazyload-image">
           </a>
         </div>
       </div>

@@ -1,10 +1,10 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from './store';
+import WeVue from 'we-vue';
+import 'we-vue/lib/style.css';
 import App from './App';
 import Axios from 'axios';
-// import VueAxios from 'vue-axios';
 Vue.prototype.$http = Axios;
 
 import course from './components/course/course.vue';
@@ -18,6 +18,7 @@ import teacherDetail from './components/teacher/teacherDetail.vue';
 import release from './components/release/release.vue';
 import agreement from './components/release/agreement.vue';
 import earnings from './components/release/earnings.vue';
+import releaseSuccess from './components/release/releaseSuccess.vue';
 
 import activity from './components/activity/activity.vue';
 import activityDetail from './components/activity/activityDetail.vue';
@@ -28,9 +29,10 @@ import about from './components/my/about.vue';
 import commonProblems from './components/my/commonProblems.vue';
 import alreadyBought from './components/my/alreadyBought.vue';
 import registerTeacher from './components/my/registerTeacher.vue';
+import myRelease from './components/my/myRelease.vue';
 
 Vue.use(VueRouter);
-// Vue.use(VueAxios, axios);
+Vue.use(WeVue);
 Vue.config.productionTip = false;
 
 const routes = [
@@ -69,6 +71,9 @@ const routes = [
     path: '/earnings',
     component: earnings
   }, {
+    path: '/releaseSuccess',
+    component: releaseSuccess
+  }, {
     path: '/activity',
     component: activity
   }, {
@@ -92,6 +97,9 @@ const routes = [
   }, {
     path: '/registerTeacher',
     component: registerTeacher
+  }, {
+    path: '/myRelease',
+    component: myRelease
   }];
 
 const router = new VueRouter({
@@ -101,8 +109,15 @@ const router = new VueRouter({
 });
 
 /* eslint-disable no-new */
-new Vue({
+let vm = new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 });
+
+router.beforeEach((to, form, next) => {
+  vm.$store.commit('isMenu', true);
+  next();
+});
+vm.a = null;

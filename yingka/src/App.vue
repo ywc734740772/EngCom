@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="home">
-      <div class="homeNav">
+      <div class="homeNav" v-if="$store.state.isMenu">
         <div class="h-menu">
           <router-link to="/course/livesCourse">
             <i class="iconfont">&#xe605;</i>
@@ -37,7 +37,8 @@
 
   export default {
     data() {
-      return {};
+      return {
+      };
     },
     components: {
       course

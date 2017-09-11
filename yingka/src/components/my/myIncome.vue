@@ -30,13 +30,39 @@
         <div class="in-price">180元</div>
       </li>
     </ul>
+
+    <div class="subIncome" v-if="!totalMoney">
+      <input type="button" :value="`总收益：${totalMoney}元`" class="">
+      <input type="button" value="提取收益">
+    </div>
+    <div class="subIncome subrelease" v-if="totalMoney">
+      <span>您还没有收益，快去发布课程，并赚取收益吧！</span>
+      <input type="button" value="发布课程" @click="subrelease()">
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import WeVue from 'we-vue';
   export default {
     data() {
-      return {};
+      return {
+        totalMoney: 630
+      };
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.commit('isMenu', false);
+      });
+    },
+    methods: {
+      subrelease() {
+        WeVue.Dialog({
+          title: '提示',
+          message: '发布失败，您还不是老师！',
+          skin: 'ios'
+        });
+      }
     }
   };
 </script>
@@ -69,4 +95,38 @@
       .in-price
         color #cc1138
         font-size 16px
+    .subIncome
+      height 55px
+      width 100%
+      position fixed
+      bottom 0
+      left 0
+      z-index 1200
+      background #fff
+      border-top solid 1px #ebebeb
+      display flex
+      justify-content space-around
+      align-items center
+      input
+        width 40%
+        outline none
+        background: #fff
+        border solid 1px #cc1438
+        color #cc1438
+        border-radius 5px
+        font-size: 14px
+        padding 8px 8px
+      .buyActive
+        background: #cc1438;
+        color: #ebebeb;
+    .subrelease
+      width auto
+      padding 0 15px
+      span
+        font-size 12px
+        line-height 1.4
+        padding-right 10px
+      input
+        width 30%
+        padding 5px
 </style>

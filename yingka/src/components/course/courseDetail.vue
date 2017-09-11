@@ -112,6 +112,11 @@
   export default {
     data() {
       return {};
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.commit('isMenu', false);
+      });
     }
   };
 </script>

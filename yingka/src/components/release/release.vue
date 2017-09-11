@@ -3,51 +3,117 @@
     <div class="release">
       <div class="r-relBox">
         <div class="r-title">课程主题</div>
-        <textarea class="r-topics" rows="4" maxlength="30" placeholder="商务英语"></textarea>
+        <wv-group>
+          <wv-textarea placeholder="商务英语" :rows="2" :max-length="30" v-model.trim="courseValue"></wv-textarea>
+        </wv-group>
       </div>
 
       <div class="r-relBox">
         <div class="r-title">内容简介</div>
-        <textarea class="r-topics" rows="8" maxlength="300" placeholder="主讲内容，可以学到什么。"></textarea>
+        <!--<textarea class="r-topics" rows="8" maxlength="300" placeholder="主讲内容，可以学到什么。"></textarea>-->
+        <wv-group>
+          <wv-textarea placeholder="主讲内容，可以学到什么。" :rows="8" :max-length="300" v-model.trim="contentValue"></wv-textarea>
+        </wv-group>
       </div>
 
       <div class="liveWay">
         <div class="r-title">分享形式</div>
-        <div class="live active">YY直播</div>
-        <div class="live">语音直播</div>
+        <div class="live" :class="{'active':sharePlatform=== 1 }" @click="sharePlatform=1">YY直播</div>
+        <div class="live" :class="{'active':sharePlatform=== 2 }" @click="sharePlatform=2">语音直播</div>
       </div>
 
       <div class="courseTime">
         <div class="r-title">课程时长</div>
-        <input type="text" placeholder="输入你理想的时间">
+        <wv-button @click="ticketPickerShow = true" v-text="courseTime"></wv-button>
+        <wv-picker v-model="ticketPickerShow" :slots="ticketSlots" @change="onChange"></wv-picker>
+        <i class="iconfont">&#xe612;</i>
       </div>
 
       <div class="coursePrice">
         <div class="r-title">课程价格</div>
-        <input type="text" placeholder="单行输入">
+        <wv-group>
+          <wv-input placeholder="请输入价格" type="number" v-model="priceNumber"></wv-input>
+        </wv-group>
         <div class="t-right">
-          <!--<div>产考价格</div>-->
           <router-link to="/earnings" tag="div">关于收益</router-link>
         </div>
 
       </div>
 
       <div class="r-agreement">
-        <input type="checkbox">
-        <span>我已阅读并同意《<router-link to="/agreement">英咖平台课程协议</router-link>》</span>
+        <input type="checkbox" :checked="isChecked" v-model="isChecked">
+        <span @click="isChecked=true">我已阅读并同意《<router-link to="/agreement">英咖平台课程协议</router-link>》</span>
       </div>
 
       <div class="r-submit">
-        <input type="button" value="提交">
+        <input type="button" value="提交" @click="submitRelease">
       </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import WeVue from 'we-vue';
   export default {
     data() {
-      return {};
+      return {
+        isChecked: true,
+        courseValue: this.value,
+        contentValue: this.value,
+        priceNumber: this.value,
+        sharePlatform: 1,
+        courseTime: '30分钟',
+        ticketPickerShow: false,
+        ticketSlots: [
+          {
+            values: [
+              '15分钟',
+              '30分钟',
+              '60分钟',
+              '90分钟'
+            ]
+          }
+        ]
+      };
+    },
+    methods: {
+      onChange (picker, value) {
+        this.$nextTick(() => {
+          this.courseTime = value.join('.');
+        });
+      },
+      tips (msg) {
+        WeVue.TopTips({
+          message: msg,
+          duration: 1500
+        });
+      },
+      submitRelease() {
+        if (!this.courseValue) {
+          this.tips('请输入课程主题！');
+          return false;
+        } else if (!this.contentValue) {
+          this.tips('请输入内容简介！');
+          return false;
+        } else if (!/^\d+(\.\d{1,2})?$/.test(this.priceNumber)) {
+          this.tips('请输入课程价格,且只能为整数或小数！');
+          return false;
+        } else if (!this.isChecked) {
+          this.tips('请勾选并阅读课程协议！');
+          return false;
+        } else {
+          WeVue.Dialog.confirm(WeVue.Dialog.setDefaults({
+            title: '发布课程',
+            message: '填写完成，发布成功后，课程信息将不可修改，请确认无误后发布，发布成功后请在我的发布，了解相关进度。',
+            confirmText: '确认发布',
+            cancelText: '我再看看',
+            showCancelBtn: true
+          })).then(action => {
+            console.log(action);
+            this.$router.push('./releaseSuccess');
+          });
+        }
+      }
     }
   };
 </script>
@@ -62,6 +128,13 @@
     .r-relBox
       display flex
       flex-direction column
+      .weui-cells
+        margin 0
+        font-size 12px
+        border solid 1px #e3e2e1
+        border-radius 3px
+        .weui-cell
+          padding 5px
       .r-topics
         color #000
         font-size 12px
@@ -93,6 +166,20 @@
       justify-content space-between
       align-items center
       padding 10px 0
+      button.weui-btn
+        flex-grow 1
+        width auto
+        background none
+        font-size 14px
+        margin-right 0
+        text-align right
+        padding-right 10px
+      button.weui-btn:hover
+        background none
+      .weui-btn:after
+        content none
+      i
+        margin-top -2px
       .r-title
         margin-right 15px
       input
@@ -108,20 +195,27 @@
       justify-content flex-start
       align-items center
       padding 10px 0
+      .weui-cells
+        margin 0
+        flex-grow 1
+        margin-right 10px
+        border solid 1px #e3e2e1
+        font-size 12px
+        border-radius 3px
+        .weui-cell
+          padding 0
       .r-title
         margin-right 15px
         font-size 15px
         white-space nowrap
       input
         font-size 12px
-        /*width 25%*/
-        flex-grow 1
-        border solid 1px #e3e2e1
+        width 100%
+        border none
         border-radius 3px
         height 16px
         line-height 16px
         padding 5px 3px
-        margin-right 10px
       .t-right
         font-size 14px
         display flex

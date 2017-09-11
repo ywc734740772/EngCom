@@ -2,7 +2,9 @@
   <div class="my">
     <router-link to="/registerTeacher">
       <div class="m-head">
-        <img src="../../images/tx2.png" alt="">
+        <div>
+          <img src="../../images/tx2.png" alt="">
+        </div>
         <div class="m-info">
           <div class="m-name">Jenny</div>
           <div class="m-title">倡导英语学习输入与输出相结合，打造英语学习闭环！</div>
@@ -14,7 +16,7 @@
         <span>已购课程</span>
         <i class="iconfont">&#xe612;</i>
       </router-link>
-      <router-link to="/release" tag="li">
+      <router-link to="/myRelease" tag="li">
         <span>发布课程</span>
         <i class="iconfont">&#xe612;</i>
       </router-link>

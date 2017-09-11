@@ -2,7 +2,7 @@
   <div class="livesList">
     <ul>
       <router-link to="/courseDetail" tag="li">
-        <img src="../../images/slide02.png">
+        <img src="../../images/slide02.png" class="lazyload-image">
       </router-link>
     </ul>
   </div>
