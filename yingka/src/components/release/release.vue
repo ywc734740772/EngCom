@@ -110,9 +110,23 @@
             showCancelBtn: true
           })).then(action => {
             console.log(action);
-            this.$router.push('./releaseSuccess');
+            this.save();
+            // this.$router.push('./releaseSuccess');
           });
         }
+      },
+      save() {
+          console.log({title: this.courseValue});
+        this.$http.post('/api/manage/goods/save', {
+          data: {title: this.courseValue, content: this.contentValue, price: this.priceNumber, type: this.sharePlatform},
+          id: 0
+        }, {
+          emulateJSON: true
+        }).then(function(res) {
+          console.log(res.data);
+        }, function(res) {
+          alert(res.status);
+        });
       }
     }
   };
